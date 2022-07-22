@@ -1,0 +1,26 @@
+body {
+  margin: 0 auto;
+  max-width: 40em;
+  width: 88%;
+  background-color: rgb(220, 208, 188);
+  /* background-image: url('north-america-blur.jpg');
+  background-size: contain; */
+}
+
+.container {
+  width: 600px;
+  margin: 62px 0;
+  padding: 16px 36px;
+  font-family: 'Arial', 'sans-serif';
+  background-color: #fff;
+  border-radius: 12px;
+}
+
+#notice {
+  font-weight: bold;
+}
+
+.notice-style {
+  height: 18px;
+  padding: 16px 0;
+}
