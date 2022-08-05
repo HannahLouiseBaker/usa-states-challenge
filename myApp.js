@@ -1,219 +1,170 @@
-// The states info
+// The states object
 let states = [
   {
-    name: 'alabama',
-    code: ''
+    name: 'alabama'
   },
   {
-    name: 'alaska',
-    code: ''
+    name: 'alaska'
   },
   {
-    name: 'arizona',
-    code: ''
+    name: 'arizona'
   },
   {
-    name: 'arkansas',
-    code: ''
+    name: 'arkansas'
   },
   {
-    name: 'california',
-    code: ''
+    name: 'california'
   },
   {
-    name: 'colorado',
-    code: ''
+    name: 'colorado'
   },
   {
-    name: 'connecticut',
-    code: ''
+    name: 'connecticut'
   },
   {
-    name: 'delaware',
-    code: ''
+    name: 'delaware'
   },
   {
-    name: 'florida',
-    code: ''
+    name: 'florida'
   },
   {
-    name: 'georgia',
-    code: ''
+    name: 'georgia'
   },
   {
-    name: 'hawaii',
-    code: ''
+    name: 'hawaii'
   },
   {
-    name: 'idaho',
-    code: ''
+    name: 'idaho'
   },
   {
-    name: 'illinois',
-    code: ''
+    name: 'illinois'
   },
   {
-    name: 'indiana',
-    code: ''
+    name: 'indiana'
   },
   {
-    name: 'iowa',
-    code: ''
+    name: 'iowa'
   },
   {
-    name: 'kansas',
-    code: ''
+    name: 'kansas'
   },
   {
-    name: 'kentucky',
-    code: ''
+    name: 'kentucky'
   },
   {
-    name: 'louisiana',
-    code: ''
+    name: 'louisiana'
   },
   {
-    name: 'maine',
-    code: ''
+    name: 'maine'
   },
   {
-    name: 'maryland',
-    code: ''
+    name: 'maryland'
   },
   {
-    name: 'massachusetts',
-    code: ''
+    name: 'massachusetts'
   },
   {
-    name: 'michigan',
-    code: ''
+    name: 'michigan'
   },
   {
-    name: 'minnesota',
-    code: ''
+    name: 'minnesota'
   },
   {
-    name: 'mississippi',
-    code: ''
+    name: 'mississippi'
   },
   {
-    name: 'missouri',
-    code: ''
+    name: 'missouri'
   },
   {
-    name: 'montana',
-    code: ''
+    name: 'montana'
   },
   {
-    name: 'nebraska',
-    code: ''
+    name: 'nebraska'
   },
   {
-    name: 'nevada',
-    code: ''
+    name: 'nevada'
   },
   {
-    name: 'new hampshire',
-    code: ''
+    name: 'new hampshire'
   },
   {
-    name: 'new jersey',
-    code: ''
+    name: 'new jersey'
   },
   {
-    name: 'new mexico',
-    code: ''
+    name: 'new mexico'
   },
   {
-    name: 'new york',
-    code: ''
+    name: 'new york'
   },
   {
-    name: 'north carolina',
-    code: ''
+    name: 'north carolina'
   },
   {
-    name: 'north dakota',
-    code: ''
+    name: 'north dakota'
   },
   {
-    name: 'ohio',
-    code: ''
+    name: 'ohio'
   },
   {
-    name: 'oklahoma',
-    code: ''
+    name: 'oklahoma'
   },
   {
-    name: 'oregon',
-    code: ''
+    name: 'oregon'
   },
   {
-    name: 'pennsylvania',
-    code: ''
+    name: 'pennsylvania'
   },
   {
-    name: 'rhode island',
-    code: ''
+    name: 'rhode island'
   },
   {
-    name: 'south carolina',
-    code: ''
+    name: 'south carolina'
   },
   {
-    name: 'south dakota',
-    code: ''
+    name: 'south dakota'
   },
   {
-    name: 'tennessee',
-    code: ''
+    name: 'tennessee'
   },
   {
-    name: 'texas',
-    code: ''
+    name: 'texas'
   },
   {
-    name: 'utah',
-    code: ''
+    name: 'utah'
   },
   {
-    name: 'vermont',
-    code: ''
+    name: 'vermont'
   },
   {
-    name: 'virginia',
-    code: ''
+    name: 'virginia'
   },
   {
-    name: 'washington',
-    code: ''
+    name: 'washington'
   },
   {
-    name: 'west virginia',
-    code: ''
+    name: 'west virginia'
   },
   {
-    name: 'wisconsin',
-    code: ''
+    name: 'wisconsin'
   },
   {
-    name: 'wyoming',
-    code: ''
+    name: 'wyoming'
   }
 ];
 
-// Get the input, btn and container
+// Get the relevant elements
 let input = document.querySelector('#state-name');
 let btn = document.querySelector('#btn');
 let listContainer = document.querySelector('.list-container');
 let correctList = document.querySelector('#correct-list');
-let previousCorrect = [];
-let count = 0;
 let score = document.querySelector('#score');
 let form = document.querySelector('#form');
 
-function getStateMap (name) {
+// Set up empty array and count variable
+let previousCorrect = [];
+let count = 0;
 
+function getStateMap (name) {
   $.ajax({
     url: "https://collections.leventhalmap.org/search.json?per_page=100&q=" + name + "&search_field=exemplary_image_ss",
     type:"Get",
@@ -223,8 +174,9 @@ function getStateMap (name) {
         let mapsLabel = document.querySelector('.mapsLabel');
         let totalResults = response.response.docs.length;
         let randomImg = Math.floor(Math.random() * totalResults);
+        let urlSmall = "https://iiif.digitalcommonwealth.org/iiif/2/" + response.response.docs[randomImg].exemplary_image_ssi + "/full/!600,600/0/default.jpg";
         let url = "https://iiif.digitalcommonwealth.org/iiif/2/" + response.response.docs[randomImg].exemplary_image_ssi + "/full/full/0/default.jpg";
-        mapImg.src = url;
+        mapImg.src = urlSmall;
 
         // Capitalise the first letter of each word
         let wordsName = name.split(' ');
@@ -240,7 +192,7 @@ function getStateMap (name) {
         correctList.innerHTML += `<li><a href="${url}" target="_blank">${nameCapitalised}</a></li>`;
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
-      alert('Ops! something went wrong!');
+      alert('Oops! something went wrong!');
     }
   });
 }
@@ -250,19 +202,20 @@ function checkState () {
   let stateGuess = input.value.toLowerCase();
   let stateCorrect;
 
-  // If there is currently a notice, remove it
+  // If there is currently a notice on the page, remove it
   let notice = document.querySelector('#notice');
 
   if (notice) {
     notice.remove();
   }
 
-
   // Check the guessed name against the states object
   states.forEach(function (state, i) {
     if (stateGuess === state.name) {
       stateCorrect = stateGuess;
+      stateIsCorrect(stateCorrect);
     }
+    console.log(previousCorrect);
   })
 
   // If the state doesn't match, provide a notice
@@ -293,28 +246,21 @@ function checkState () {
     input.value = '';
   }
 
+  // Clear form value
+  input.value = '';
+}
+
+function stateIsCorrect (stateCorrect) {
   if (!previousCorrect.includes(stateCorrect)) {
-
-    // // Capitalise the first letter of each word
-    // let words = stateCorrect.split(' ');
-    //
-    // for (let i = 0; i < words.length; i++) {
-    //   words[i] = words[i][0].toUpperCase() + words[i].substr(1);
-    // }
-    //
-    // stateCorrectCapitalised = words.join(' ');
-    //
-    // correctList.innerHTML += `<li><ul href="">${stateCorrectCapitalised}</ul></li>`;
-
     // Add original, lowercase string to array
     previousCorrect.push(stateCorrect);
 
     // Call the function to get an image - with stateCorrect as the input
     getStateMap(stateCorrect);
 
+    // Add to count and display new score
     count++;
     score.innerHTML = `${count}/50`;
-
   } else {
 
     // Create a notification
@@ -323,7 +269,6 @@ function checkState () {
     notice.setAttribute('aria-live', 'polite');
     notice.setAttribute('class', 'notice-style');
 
-    // To do: This isn't working
     notice.style.padding = '16px 0';
 
     // Inject it into the DOM
@@ -342,10 +287,8 @@ function checkState () {
       notices--;
     }, 1);
   }
-
-  // Need to clear form value at the end
-  input.value = '';
 }
+
 
 // Listen for DOM events
 btn.addEventListener('click', checkState);
